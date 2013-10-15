@@ -41,6 +41,12 @@ class Query
 
     /** @var array */
     protected $filters;
+    
+    /**
+     * @var string 
+     * comma is OR, ; is AND in filter builder
+     */
+    protected $filter_delimiter=','; 
 
     /** @var string */
     protected $segment;
@@ -322,6 +328,24 @@ class Query
         
         return $this;
     }
+    
+    /**
+     * Allows the setting of different filter delimiters, AND or OR
+     */
+    public function setFilterDelimiter($filter_delimiter)
+    {
+        $this->filter_delimiter = $filter_delimiter;
+    }
+
+    /**
+     * Get the filter delimiter
+     * 
+     * @return string the delimiter
+     */
+    public function getFilterDelimiter()
+    {
+        return $this->filter_delimiter;
+    }
 
     /**
      * Checks if the google analytics query has filters.
@@ -543,7 +567,7 @@ class Query
         }
 
         if ($this->hasFilters()) {
-            $query['filters'] = implode(',', $this->getFilters());
+            $query['filters'] = implode($this->filter_delimiter, $this->getFilters());
         }
 
         if ($this->hasSorts()) {
