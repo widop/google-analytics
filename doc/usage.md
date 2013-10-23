@@ -111,5 +111,3 @@ $rows = $response->getRows();
 
 If you want to have a working example of this bundle with symfony2 and sonata admin you can have a look at 
 [PrestaGoogleAnalyticsDashboardBundle](https://github.com/prestaconcept/PrestaGoogleAnalyticsDashboardBundle)
-
-
