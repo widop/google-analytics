@@ -82,7 +82,7 @@ Now we have a request & a token, we can request the Google Analytics service :)
 use Widop\GoogleAnalytics\Service;
 
 $service = new Service($client);
-$response = $service->query($request);
+$response = $service->query($query);
 ```
 
 ## Response
