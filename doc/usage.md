@@ -44,7 +44,7 @@ $query->setDimensions(array('ga:browser', 'ga:city'));
 $query->setSorts(array('ga:country', 'ga:browser'));
 
 // See https://developers.google.com/analytics/devguides/reporting/core/v3/reference#filters
-$query->setFilters(array('ga:browser%3D~%5EFirefox'));
+$query->setFilters(array('ga:browser=~^Firefox'));
 
 // See https://developers.google.com/analytics/devguides/reporting/core/v3/reference#segment
 $query->setSegment('gaid::10');
