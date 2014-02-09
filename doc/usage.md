@@ -1,6 +1,6 @@
 # Usage
 
-## Get your creadentials
+## Get your credentials
 
 As you have read in the README, the library allows you to request the google analytics service without user interaction.
 In order to make it possible, you need to create a Google Service Account. Here, the explanation:
