@@ -87,7 +87,7 @@ $response = $service->query($query);
 
 ## Response
 
-The response is a `Widop\GoogleAnalytics\Response` obecjt which wraps all available informations:
+The response is a `Widop\GoogleAnalytics\Response` object which wraps all available informations:
 
 ``` php
 $profileInfo = $response->getProfileInfo();
