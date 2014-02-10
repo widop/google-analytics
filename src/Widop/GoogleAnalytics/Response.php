@@ -303,4 +303,20 @@ class Response
     {
         return $this->rows;
     }
+
+    /**
+     * Convert the response to json
+     *
+     * @return json encoded Object.
+     */
+    public function _toJson()
+    {
+        $properties = get_object_vars($this);
+        $object     = new \StdClass();
+        $object->_class      = get_class($this);
+        foreach ($properties as $name => $value) {
+            $object->$name = $value;
+        }
+        return json_encode($object);
+    }
 }
