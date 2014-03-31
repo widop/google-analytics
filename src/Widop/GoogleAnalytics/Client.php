@@ -177,7 +177,7 @@ class Client
                 'assertion'      => $this->generateJsonWebToken(),
             );
 
-            $response = json_decode($this->httpAdapter->postContent($this->url, $headers, $content));
+            $response = json_decode($this->httpAdapter->postContent($this->url, $headers, http_build_query($content)));
 
             if (isset($response->error)) {
                 throw GoogleAnalyticsException::invalidAccessToken($response->error);
