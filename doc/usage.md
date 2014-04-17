@@ -66,7 +66,7 @@ the [Wid'op Http Adapter library](https://github.com/widop/http-adapter) which a
 use Widop\GoogleAnalytics\Client;
 use Widop\HttpAdapter\CurlHttpAdapter;
 
-$clientId = 'XXXXXXXXXXXX@developer.gserviceaccount.com';
+$clientId = 'XXXXXXXXXXXX@developer.gserviceaccount.com'; # NB! an email address
 $privateKeyFile = __DIR__.'/certificate.p12';
 $httpAdapter = new CurlHttpAdapter();
 
