@@ -597,7 +597,7 @@ class Query
         if ($this->hasCallback()) {
             $query['callback'] = $this->getCallback();
         }
-        var_dump(sprintf('%s?%s', self::URL, http_build_query($query)));
+
         return sprintf('%s?%s', self::URL, http_build_query($query));
     }
 }
