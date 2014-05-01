@@ -562,13 +562,13 @@ class Query
     public function build($accessToken)
     {
         $query = array(
-            'ids'               => $this->getIds(),
-            'metrics'           => implode(',', $this->getMetrics()),
-            'start-date'        => $this->getStartDate()->format('Y-m-d'),
-            'end-date'          => $this->getEndDate()->format('Y-m-d'),
-            'access_token'      => $accessToken,
-            'start-index'       => $this->getStartIndex(),
-            'max-results'       => $this->getMaxResults(),
+            'ids'          => $this->getIds(),
+            'metrics'      => implode(',', $this->getMetrics()),
+            'start-date'   => $this->getStartDate()->format('Y-m-d'),
+            'end-date'     => $this->getEndDate()->format('Y-m-d'),
+            'access_token' => $accessToken,
+            'start-index'  => $this->getStartIndex(),
+            'max-results'  => $this->getMaxResults(),
         );
         if ($this->hasSamplingLevel()) {
             $query['samplingLevel'] = $this->getSamplingLevel();
