@@ -57,6 +57,9 @@ class Query
     /** @var string */
     protected $callback;
 
+    /** @var string */
+    protected $samplingLevel;
+
     /**
      * Creates a google analytics query.
      *
@@ -516,6 +519,40 @@ class Query
     }
 
     /**
+     * Checks the google analytics query for a sampling level.
+     *
+     * @return boolean TRUE if the google analytics query has a sampling level else FALSE.
+     */
+    public function hasSamplingLevel()
+    {
+        return !empty($this->samplingLevel);
+    }
+
+    /**
+     * Gets the google analytics query sampling level.
+     *
+     * @return string The google analytics sampling level ('FASTER', DEFAULT', 'HIGHER_PRECISION').
+     */
+    public function getSamplingLevel()
+    {
+        return $this->samplingLevel;
+    }
+
+    /**
+     * Sets the google analytics query sampling level.
+     *
+     * @param string $samplingLevel The google analytics query sampling level ('FASTER', DEFAULT', 'HIGHER_PRECISION').
+     *
+     * @return \Widop\GoogleAnalytics\Query The query.
+     */
+    public function setSamplingLevel($samplingLevel)
+    {
+        $this->samplingLevel = $samplingLevel;
+        
+        return $this;
+    }
+
+    /**
      * Builds the query.
      *
      * @param string $accessToken The access token used to build the query.
@@ -533,6 +570,9 @@ class Query
             'start-index'  => $this->getStartIndex(),
             'max-results'  => $this->getMaxResults(),
         );
+        if ($this->hasSamplingLevel()) {
+            $query['samplingLevel'] = $this->getSamplingLevel();
+        }
 
         if ($this->hasSegment()) {
             $query['segment'] = $this->getSegment();
