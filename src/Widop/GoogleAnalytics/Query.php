@@ -50,6 +50,9 @@ class Query
 
     /** @var integer */
     protected $maxResults;
+    
+    /** @var string */
+    protected $serviceURL;
 
     /** @var boolean */
     protected $prettyPrint;
@@ -72,6 +75,7 @@ class Query
         $this->filters = array();
         $this->startIndex = 1;
         $this->maxResults = 10000;
+        $this->serviceURL = self::URL;
         $this->prettyPrint = false;
     }
 
@@ -456,6 +460,32 @@ class Query
         
         return $this;
     }
+    
+    /**
+     * Gets the google analytics service URL.
+     *
+     * @return string The google analytics service url.
+     */
+    public function getServiceURL()
+    {
+        return $this->serviceURL;
+    }
+    
+    /**
+     * Sets the google analytics service URL
+     *
+     * @param string $serviceURL The google analytics service url.
+     * 
+     * @return \Widop\GoogleAnalytics\Query The query.
+     */
+    public function setServiceURL($serviceURL)
+    {
+        $this->serviceURL = $serviceURL;
+        return $this;
+    }
+    
+    
+
 
     /**
      * Gets the google analytics query prettyPrint option.
@@ -558,6 +588,6 @@ class Query
             $query['callback'] = $this->getCallback();
         }
 
-        return sprintf('%s?%s', self::URL, http_build_query($query));
+        return sprintf('%s?%s', $this->serviceURL, http_build_query($query));
     }
 }
