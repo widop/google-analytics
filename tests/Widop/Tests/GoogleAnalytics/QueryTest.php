@@ -144,6 +144,14 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($maxResults, $this->query->getMaxResults());
     }
 
+    public function testServiceURL()
+    {
+        $serviceURL = 'http://google.com';
+        $this->query->setServiceURL($serviceURL);
+
+        $this->assertSame($serviceURL, $this->query->getServiceURL());
+    }
+
     public function testPrettyPrint()
     {
         $this->query->setPrettyPrint(true);
@@ -172,6 +180,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         $this->query->setSegment('seg');
         $this->query->setStartIndex(10);
         $this->query->setMaxResults(100);
+        $this->query->setServiceURL($serviceURL = 'https://www.googleapis.com/analytics/v3/data/ga');
         $this->query->setPrettyPrint(true);
         $this->query->setCallback('call');
 
