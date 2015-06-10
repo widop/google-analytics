@@ -56,6 +56,9 @@ class Query
 
     /** @var string */
     protected $callback;
+    
+    /** @var string */
+    protected $samplingLevel;
 
     /**
      * Creates a google analytics query.
@@ -219,6 +222,38 @@ class Query
         return $this;
     }
 
+    /**
+     * Use this parameter to set the sampling level (i.e. the number
+     * of sessions used to calculate the result) for a reporting query.
+     * The allowed values are consistent with the web interface and include:
+     *   DEFAULT - Returns response with a sample size that balances speed and accuracy.
+     *   FASTER - Returns a fast response with a smaller sample size.
+     *   HIGHER_PRECISION - Returns a more accurate response using a large sample size,
+     *                      but this may result in the response being slower.
+     *
+     * If not supplied, the DEFAULT sampling level will be used.
+     * 
+     * @param string $samplingLevel Sets the number of sessions used
+     *
+     * @return \Widop\GoogleAnalytics\Query The query.
+     */
+    public function setSamplingLevel($samplingLevel)
+    {
+        
+        $this->samplingLevel = $samplingLevel;
+        return $this;
+    }
+    
+    public function hasSamplingLevel()
+    {
+        return !empty($this->samplingLevel);
+    }
+    
+    public function getSamplingLevel()
+    {
+        return $this->samplingLevel;
+    }
+    
     /**
      * Checks if the google analytics query has dimensions.
      *
@@ -553,11 +588,14 @@ class Query
         if ($this->getPrettyPrint()) {
             $query['prettyPrint'] = 'true';
         }
-
+        
         if ($this->hasCallback()) {
             $query['callback'] = $this->getCallback();
         }
 
+        if ($this->hasSamplingLevel()) {
+            $query['samplingLevel'] = $this->getSamplingLevel();
+        }
         return sprintf('%s?%s', self::URL, http_build_query($query));
     }
 }
